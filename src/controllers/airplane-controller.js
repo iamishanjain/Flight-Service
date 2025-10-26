@@ -1,7 +1,6 @@
 const { StatusCodes } = require("http-status-codes");
 
 const { AirplaneService } = require("../services");
-const { response } = require("express");
 const { error } = require("winston");
 const { ErrorResponse, SuccessResponse } = require("../utils/common");
 

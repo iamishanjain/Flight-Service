@@ -72,9 +72,23 @@ async function destroyAirplane(id) {
     );
   }
 }
+
+async function updateAirplane(id) {
+  try {
+    const updateResponse = await airplaneRepository.update(id);
+    
+    return updateResponse;
+  } catch (error) {
+    throw new AppError(
+      "Something went wrong while Updating Airplanes",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+}
 module.exports = {
   createAirplane,
   getAirplanes,
   getAirplane,
   destroyAirplane,
+  updateAirplane,
 };
