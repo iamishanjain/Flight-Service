@@ -5,6 +5,11 @@ const { response } = require("express");
 const { error } = require("winston");
 const { ErrorResponse, SuccessResponse } = require("../utils/common");
 
+/**
+ * POST :/airplanes
+ * req-body {modelNumber : "aiejdj", capacity : 100}
+ */
+
 async function createAirplane(req, res) {
   try {
     const airplane = await AirplaneService.createAirplane({
@@ -21,7 +26,12 @@ async function createAirplane(req, res) {
   }
 }
 
-async function getAirplane(req, res) {
+/**
+ * GET :/airplanes
+ * req-body {}
+ */
+
+async function getAirplanes(req, res) {
   try {
     const airplanes = await AirplaneService.getAirplanes();
     SuccessResponse.message = "All Airplanes data fetched successfully";
@@ -34,7 +44,25 @@ async function getAirplane(req, res) {
   }
 }
 
+/**
+ * POST :/airplanes/:id
+ * req-body {}
+ */
+
+async function getAirplane(req, res) {
+  try {
+    const airplanes = await AirplaneService.getAirplane(req.params.id);
+    SuccessResponse.message = "Airplane data fetched successfully";
+    SuccessResponse.data = airplanes;
+
+    return res.status(StatusCodes.OK).json(SuccessResponse);
+  } catch (error) {
+    ErrorResponse.error = error;
+    return res.status(error.statusCode).json(ErrorResponse);
+  }
+}
 module.exports = {
   createAirplane,
+  getAirplanes,
   getAirplane,
 };
