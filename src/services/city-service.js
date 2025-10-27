@@ -78,6 +78,14 @@ async function destroyCity(id) {
   }
 }
 
+async function updateCity(id) {
+  try {
+    
+  } catch (error) {
+    
+  }
+}
+
 module.exports = {
   createCity,
   getCities,

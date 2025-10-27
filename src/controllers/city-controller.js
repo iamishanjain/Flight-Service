@@ -23,6 +23,11 @@ async function createCity(req, res) {
   }
 }
 
+/**
+ * GET :/cities
+ * req-body {}
+ */
+
 async function getCities(req, res) {
   try {
     const cities = await CityService.getCities();
@@ -35,6 +40,11 @@ async function getCities(req, res) {
   }
 }
 
+/**
+ * POST :/cities/:id
+ * req-body {}
+ */
+
 async function getCity(req, res) {
   try {
     const city = await CityService.getCity(req.params.id);
@@ -46,6 +56,11 @@ async function getCity(req, res) {
     return res.status(error.statusCode).json(ErrorResponse);
   }
 }
+
+/**
+ * DELETE :/cities/:id
+ * req-body {}
+ */
 
 async function destroyCity(req, res) {
   try {
@@ -66,3 +81,5 @@ module.exports = {
   getCity,
   destroyCity,
 };
+
+// update API need to be implemneted
