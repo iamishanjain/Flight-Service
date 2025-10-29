@@ -20,3 +20,5 @@ module.exports = {
     await queryInterface.removeConstraint("Airports", "City_fkey_constraint");
   },
 };
+
+// Need to look on this thing especially about CASCADE
