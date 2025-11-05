@@ -11,8 +11,8 @@ module.exports = {
         table: "Cities",
         field: "id",
       },
-      onUpdate: "CASCADE",
-      onDELETE: "CASCADE",
+
+      onDelete: "CASCADE",
     });
   },
 
@@ -22,3 +22,8 @@ module.exports = {
 };
 
 // Need to look on this thing especially about CASCADE
+
+/**
+ * Query to check if contraint has been applied or not
+ * select * from INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_NAME  = "airports" AND CONSTRAINT_SCHEMA = "flights";
+ */
