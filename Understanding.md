@@ -7,3 +7,6 @@ Flow of routes :-
 Flow of Request :-
 
   controller -> service (Business logic) -> repository -> database
+
+  Need to  learn about one to many associations methods
+  
