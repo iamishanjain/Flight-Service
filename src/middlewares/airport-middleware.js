@@ -21,15 +21,6 @@ function ValidateCreateRequest(req, res, next) {
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
-  if (!req.body.address) {
-    ErrorResponse.message = "Something went wrong in creating airport";
-
-    ErrorResponse.error = new AppError(
-      ["Address not found in the incpming request in the correct form"],
-      StatusCodes.BAD_REQUEST
-    );
-    return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
-  }
   if (!req.body.cityId) {
     ErrorResponse.message = "Something went wrong in creating airport";
 
