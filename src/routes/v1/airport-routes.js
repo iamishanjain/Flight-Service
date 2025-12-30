@@ -10,11 +10,11 @@ const router = express.Router();
 router.post(
   "/",
   AirportMiddlewares.ValidateCreateRequest,
-  AirportController.createAirplane
+  AirportController.createAirport
 );
 
 // /api/v1/airports -> GET
-router.get("/", AirportController.getAirport);
+router.get("/", AirportController.getAirports);
 
 // /api/v1/airports/:id -> GET
 router.get("/:id", AirportController.getAirport);
