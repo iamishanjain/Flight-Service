@@ -14,7 +14,7 @@ router.post(
 );
 // /api/v1/flights?trips=MUM-HYD -> get
 
-// router.get("/", FlightController.getAllFlights);
+router.get("/", FlightController.getAllFlights);
 
 // // /api/v1/flights -> GET
 // router.get("/", AirportController.getAirport);
