@@ -75,9 +75,28 @@ async function getAllFlights(query) {
   }
 }
 
+async function getFlight(id) {
+  try {
+    const flight = await flightRepository.get(id);
+    return flight;
+  } catch (error) {
+    if (error.statusCode == StatusCodes.NOT_FOUND) {
+      throw new AppError(
+        "The flight you requested is not present",
+        error.statusCode,
+      );
+    }
+    throw new AppError(
+      "Cannot fetch the data of the requested flight.",
+      StatusCodes.BAD_REQUEST,
+    );
+  }
+}
+
 module.exports = {
   createFlight,
   getAllFlights,
+  getFlight,
 };
 
 // one issue we can take is that to check that depature time should always be less than the arrival time for all flights

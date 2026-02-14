@@ -73,22 +73,22 @@ async function getAllFlights(req, res) {
 // }
 
 // /**
-//  * POST :/airports/:id
+//  * POST :/flights/:id
 //  * req-body {}
 //  */
 
-// async function getAirport(req, res) {
-//   try {
-//     const airports = await AirportService.getAirport(req.params.id);
-//     SuccessResponse.message = "Airport data fetched successfully";
-//     SuccessResponse.data = airports;
+async function getFlight(req, res) {
+  try {
+    const flight = await FlightService.getFlight(req.params.id);
+    SuccessResponse.message = "Flight data fetched successfully";
+    SuccessResponse.data = flight;
 
-//     return res.status(StatusCodes.OK).json(SuccessResponse);
-//   } catch (error) {
-//     ErrorResponse.error = error;
-//     return res.status(error.statusCode).json(ErrorResponse);
-//   }
-// }
+    return res.status(StatusCodes.OK).json(SuccessResponse);
+  } catch (error) {
+    ErrorResponse.error = error;
+    return res.status(error.statusCode).json(ErrorResponse);
+  }
+}
 
 // /**
 //  * DELETE :/airports/:id
@@ -110,6 +110,7 @@ async function getAllFlights(req, res) {
 module.exports = {
   createFlight,
   getAllFlights,
+  getFlight,
 };
 
 // update API need to be implemneted
