@@ -8,7 +8,7 @@ function ValidateCreateRequest(req, res, next) {
 
     ErrorResponse.error = new AppError(
       ["flightNumber not found in the incoming request in the correct form"],
-      StatusCodes.BAD_REQUEST
+      StatusCodes.BAD_REQUEST,
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -17,7 +17,7 @@ function ValidateCreateRequest(req, res, next) {
 
     ErrorResponse.error = new AppError(
       ["airplaneId not found in the incoming request in the correct form"],
-      StatusCodes.BAD_REQUEST
+      StatusCodes.BAD_REQUEST,
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -28,7 +28,7 @@ function ValidateCreateRequest(req, res, next) {
       [
         "departureAirportId not found in the incpming request in the correct form",
       ],
-      StatusCodes.BAD_REQUEST
+      StatusCodes.BAD_REQUEST,
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -39,7 +39,7 @@ function ValidateCreateRequest(req, res, next) {
       [
         "arrivalAirportId not found in the incpming request in the correct form",
       ],
-      StatusCodes.BAD_REQUEST
+      StatusCodes.BAD_REQUEST,
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -48,7 +48,7 @@ function ValidateCreateRequest(req, res, next) {
 
     ErrorResponse.error = new AppError(
       ["arrivalTime not found in the incpming request in the correct form"],
-      StatusCodes.BAD_REQUEST
+      StatusCodes.BAD_REQUEST,
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -57,7 +57,7 @@ function ValidateCreateRequest(req, res, next) {
 
     ErrorResponse.error = new AppError(
       ["departureTime not found in the incpming request in the correct form"],
-      StatusCodes.BAD_REQUEST
+      StatusCodes.BAD_REQUEST,
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -66,7 +66,7 @@ function ValidateCreateRequest(req, res, next) {
 
     ErrorResponse.error = new AppError(
       ["price not found in the incpming request in the correct form"],
-      StatusCodes.BAD_REQUEST
+      StatusCodes.BAD_REQUEST,
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -84,7 +84,31 @@ function ValidateCreateRequest(req, res, next) {
 
     ErrorResponse.error = new AppError(
       ["totalSeats not found in the incoming request in the correct form"],
-      StatusCodes.BAD_REQUEST
+      StatusCodes.BAD_REQUEST,
+    );
+    return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+  }
+  next();
+}
+
+function validateUpdateSeatsRequest(req, res, next) {
+  // if (!req.params.flightId) {
+  //   ErrorResponse.message =
+  //     "Something went wrong in updating remaining number of seats";
+
+  //   ErrorResponse.error = new AppError(
+  //     ["flightId not found in the incoming request"],
+  //     StatusCodes.BAD_REQUEST,
+  //   );
+  //   return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+  // }
+  if (!req.body.seats) {
+    ErrorResponse.message =
+      "Something went wrong in updating remaining number of seats";
+
+    ErrorResponse.error = new AppError(
+      ["seats not found in the incoming request"],
+      StatusCodes.BAD_REQUEST,
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -92,4 +116,5 @@ function ValidateCreateRequest(req, res, next) {
 }
 module.exports = {
   ValidateCreateRequest,
+  validateUpdateSeatsRequest,
 };

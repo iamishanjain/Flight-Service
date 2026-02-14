@@ -2,7 +2,8 @@ const { Sequelize, Op } = require("sequelize");
 
 const CrudRepository = require("./crud-repository");
 const { Flight, Airplane, Airport, City } = require("../models");
-
+const db = require("../models");
+const { addRowLockonFlightSeats } = require("./queries");
 class FlightRepository extends CrudRepository {
   constructor() {
     super(Flight);
@@ -53,6 +54,22 @@ class FlightRepository extends CrudRepository {
       ],
     });
     return response;
+  }
+
+  async updateRemainingSeats(flightId, seats, dec = true) {
+    await db.sequelize.query(addRowLockonFlightSeats(flightId));
+    const flight = await Flight.findByPk(flightId);
+    // Convert to boolean properly: handles both boolean and string values
+    const shouldDecrement =
+      dec === true || dec === "true" || dec === 1 || dec === "1";
+
+    if (shouldDecrement) {
+      await flight.decrement("totalSeats", { by: seats });
+    } else {
+      await flight.increment("totalSeats", { by: seats });
+    }
+    await flight.reload();
+    return flight;
   }
 }
 

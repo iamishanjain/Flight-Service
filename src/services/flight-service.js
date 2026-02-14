@@ -93,10 +93,27 @@ async function getFlight(id) {
   }
 }
 
+async function updateSeats(data) {
+  try {
+    const response = await flightRepository.updateRemainingSeats(
+      data.flightId,
+      data.seats,
+      data.dec,
+    );
+    return response;
+  } catch (error) {
+    throw new AppError(
+      "Cannot update the data of the remaining seats.",
+      StatusCodes.BAD_REQUEST,
+    );
+  }
+}
+
 module.exports = {
   createFlight,
   getAllFlights,
   getFlight,
+  updateSeats,
 };
 
 // one issue we can take is that to check that depature time should always be less than the arrival time for all flights
